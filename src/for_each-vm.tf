@@ -32,10 +32,6 @@ variable "vm_resources" {
   ]
 }
 
-locals {
-  ssh-keys = file("~/.ssh/id_ed25519.pub")
-}
-
 resource "yandex_compute_instance" "for_each" {
   depends_on = [yandex_compute_instance.web]
   for_each = { for i in var.vm_resources : i.vm_name => i }
@@ -69,4 +65,8 @@ resource "yandex_compute_instance" "for_each" {
   scheduling_policy {
     preemptible = true
   }
+}
+
+locals {
+  ssh-keys = file("~/.ssh/id_ed25519.pub")
 }

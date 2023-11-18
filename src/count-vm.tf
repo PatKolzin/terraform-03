@@ -38,4 +38,5 @@ resource "yandex_compute_instance" "web" {
     ]
   }
   allow_stopping_for_update = true
+
 }
